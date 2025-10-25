@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Portfolio-RaphaelTAMESSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-bar {
+            transition: width 1s ease-in-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body class="h-full bg-gray-50 font-sans">
+    <main class="min-h-full">
+        <!-- Header avec navigation -->
+        <header class="gradient-bg text-white shadow-lg">
+            <nav class="max-w-6xl mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-bold">Mon Portfolio</h1>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="#accueil" class="hover:text-blue-200 transition-colors">A propos</a>
+                        <a href="#experience" class="hover:text-blue-200 transition-colors">Expérience</a>
+                        <a href="#competences" class="hover:text-blue-200 transition-colors">Compétences</a>
+                        <a href="#formation" class="hover:text-blue-200 transition-colors">Formation</a>
+                        <a href="#projets" class="hover:text-blue-200 transition-colors">Réalisation</a>
+                        <a href="#contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                    </div>
+                    <button id="menu-toggle" class="md:hidden">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                    <a href="#accueil" class="block hover:text-blue-200 transition-colors">A propos</a>
+                    <a href="#experience" class="block hover:text-blue-200 transition-colors">Expérience</a>
+                    <a href="#competences" class="block hover:text-blue-200 transition-colors">Compétences</a>
+                    <a href="#formation" class="block hover:text-blue-200 transition-colors">Formation</a>
+                    <a href="#projets" class="block hover:text-blue-200 transition-colors">Réalisation</a>
+                    <a href="#contact" class="block hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Section Accueil -->
+        <section id="accueil" class="py-12 sm:py-16 lg:py-20 gradient-bg text-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center animate-fade-in">
+                <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full mx-auto mb-4 sm:mb-6 overflow-hidden border-4 border-white shadow-lg">
+                    <img src="./médias/profil.jpg" alt="Photo de profil de Raphaël TAMESSE" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-full h-full flex items-center justify-center" style="display: none;">
+                        <svg class="w-16 h-16 sm:w-20 sm:h-20 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Raphaël TAMESSE</h1>
+                <h2 class="text-lg sm:text-xl lg:text-2xl mb-4 sm:mb-6 text-blue-100">Ingénieur pédagogique numérique</h2>
+                <p class="text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-4">
+                    Ingénieur pédagogique et enseignant, je conçois des dispositifs d'apprentissage innovants et engageants centrés sur l'apprenant. Spécialisé en conception pédagogique
+					multimédia et en gestion de projets digital learning, je crée des parcours sur mesure, innovants et adaptés aux besoins des apprenants.
+
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+                    <button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                        Me Contacter
+                    </button>
+                    <button onclick="downloadCV()" class="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                        Télécharger CV
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Expérience -->
+        <section id="experience" class="py-12 sm:py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Expériences professionnelles</h2>
+                <div class="space-y-8">
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Chef de projet Digital Learning</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Kwark Education | Paris</p>
+                                <p class="text-gray-500 text-xs sm:text-sm italic">Contrat de professionnalisation</p>
+                            </div>
+                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">09/2024 - 09/2025</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• Analyser les besoins clients et élaborer les cahiers des charges</li>
+                            <li>• Créer et intégrer des contenus pédagogiques sur la plateforme LMS</li>
+                            <li>• Gérer les projets et veiller au respect des délais</li>
+                            <li>• Rendre compte de l'avancement des projets aux superviseurs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Ingénieur pédagogique numérique</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Centre Universitaire d'études Françaises (CUEF) | Grenoble</p>
+                                <p class="text-gray-500 text-xs sm:text-sm italic">Stage</p>
+                            </div>
+                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2024 - 08/2024</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• Concevoir un dispositif de 4 modules d'apprentissage du français en ligne</li>
+                            <li>• Créer et intégrer des contenus pédagogiques multimédias</li>
+                            <li>• Déployer les modules interactifs sur la plateforme LMS</li>
+                            <li>• Tester et améliorer les modules en fonction des retours utilisateurs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Ingénieur pédagogique numérique</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">École Normale Supérieure de Maroua | Cameroun</p>
+                                <p class="text-gray-500 text-xs sm:text-sm italic">Stage</p>
+                            </div>
+                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2023 - 06/2023</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• Analyser les besoins et proposer un programme de formation technopédagogique</li>
+                            <li>• Animer des ateliers de formation à l'utilisation des outils auteurs</li>
+                            <li>• Participation à la sélection et évaluation des outils technologiques adaptés au contexte</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Responsable pédagogique</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">L'Eccellenza – Centre de langues | Yaoundé</p>
+                            </div>
+                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">01/2022 - ...</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• Recruter et gérer du personnel enseignant</li>
+                            <li>• Analyser les besoins des apprenants et définir des objectifs pédagogiques</li>
+                            <li>• Coordonner et suivre les activités pédagogiques</li>
+                            <li>• Créer des supports pédagogiques numériques</li>
+                            <li>• Évaluer les offres de formation et proposition d'améliorations</li>
+                            <li>• Gérer des campagnes publicitaires et suivi des prospects</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Enseignant de langue étrangère</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Lycée classique et moderne | Ngaoundéré</p>
+                            </div>
+                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2018 - 09/2022</span>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• Préparer et dispenser des cours adaptés aux programmes en vigueur</li>
+                            <li>• Concevoir des supports pédagogiques variés et innovants</li>
+                            <li>• Suivre et évaluer le progrès des élèves</li>
+                            <li>• Coordonner les activités du département des langues étrangères</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Compétences -->
+        <section id="competences" class="py-12 sm:py-16 bg-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Compétences</h2>
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Compétences techniques</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Analyse du public et des besoins de formation</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">75%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Conception et modélisation de dispositifs pédagogiques innovants</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">70%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Production et déploiement de ressources pédagogiques multimédias</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">78%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Conception et mise en œuvre de dispositifs d'évaluation</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">68%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Gestion de projets de digital learning</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">72%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Gestion plateformes LMS</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">65%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Connaissance du RGPD</span>
+                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">70%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
+                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="border-t pt-4">
+                            <h4 class="font-bold text-gray-800 mb-3">Qualités personnelles</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Proactif</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Organisé</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Rigoureux</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Polyvalent</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Sociable</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Dynamique</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Outils numériques</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/storyline-logo.png" alt="Storyline 360" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Storyline 360 non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Storyline 360</p>
+                            </div>
+							<div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/h5p-logo.png" alt="Genially" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Genially non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">H5P</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/genially-logo.png" alt="Genially" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Genially non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Genially</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/canva-logo.png" alt="Canva" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Canva non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Canva</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/audacity-logo.png" alt="Audacity" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Audacity non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Audacity</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/adobe-logo.png" alt="Suite Adobe" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Suite Adobe non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Suite Adobe</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/google-logo.png" alt="Google Workspace" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Google Workspace non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Google Workspace</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/microsoft365-logo.png" alt="Microsoft 365" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Microsoft 365 non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Microsoft 365</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/moodle-logo.png" alt="Moodle" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Moodle non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Moodle</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/html-css-js-logo.png" alt="HTML CSS JS" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo HTML CSS JS non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">HTML/CSS/JS</p>
+                            </div>
+                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/notion-logo.png" alt="Notion" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Notion non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Notion</p>
+                            </div>
+							<div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
+                                    <img src="./médias/camtasia-logo.png" alt="Notion" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Notion non trouvé'; this.style.display='none';">
+                                </div>
+                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Camtasia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Formation -->
+        <section id="formation" class="py-12 sm:py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Formation</h2>
+                <div class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Master en didactique des langues et ingénierie pédagogique numérique</h3>
+                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2022 - 2025</span>
+                        </div>
+                        <p class="text-blue-600 font-semibold mb-2">Université Grenoble-Alpes | Grenoble</p>
+                        <p class="text-gray-600">Conception et mise en place de dispositifs pédagogiques numériques, méthodologies de gestion de projets digital learning</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Diplôme de professeur de lycée option langues étrangères</h3>
+                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2015 - 2017</span>
+                        </div>
+                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">École Normale Supérieure | Maroua (Cameroun)</p>
+                        <p class="text-gray-600 text-sm sm:text-base">Conception de parcours pédagogiques centrés sur l'apprenant, maîtrise des méthodologies en didactique des langues</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Licence en langues étrangères appliquées</h3>
+                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2011 - 2014</span>
+                        </div>
+                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">Université de Dschang | Cameroun</p>
+                        <p class="text-gray-600 text-sm sm:text-base">Formation pluridisciplinaire en langues étrangères avec applications pratiques dans différents domaines professionnels</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section id="projets" class="py-12 sm:py-16 bg-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Projets réalisés</h2>
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                                <span class="text-xl sm:text-2xl">🎓</span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Esame Facile</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Plateforme interactive dédiée à la préparation des certifications de langue italienne, 
+							conçue pour un apprentissage 100 % en autonomie. Bien qu’encore en phase de finalisation, 
+							les premiers retours des étudiants du centre L’Eccellenza sont très positifs et encourageants.
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">E-learning</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Autonomie</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Certification</span>
+                        </div>
+                        <a href="https://esamefacile.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                            Voir le projet
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
+                                <span class="text-xl sm:text-2xl">🇫🇷</span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Start e-FLE</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Crée lors de mon stage au CUEF de Grenoble, il s'agit d'un dispositif en ligne d'apprentissage du français langue étrangère ayant obtenu un taux de satisfaction de 85% auprès du public cible.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">FLE en ligne</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">85% satisfaction</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Multimédia</span>
+                        </div>
+                        <a href="https://cours.univ-grenoble-alpes.fr/course/view.php?id=20663" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                            Voir le projet
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Section Langues -->
+                <div class="mt-12">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Langues</h3>
+                    <div class="max-w-2xl mx-auto grid md:grid-cols-3 gap-6">
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🇫🇷</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Français</h4>
+                            <p class="text-gray-600">Langue maternelle</p>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🇮🇹</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Italien</h4>
+                            <p class="text-gray-600">Avancé</p>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🇬🇧</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Anglais</h4>
+                            <p class="text-gray-600">Intermédiaire</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section Centres d'intérêt -->
+                <div class="mt-12">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Centres d'intérêt</h3>
+                    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🎬</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Montage vidéo et audio</h4>
+                            <p class="text-gray-600 text-sm">Création de contenus multimédias</p>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🎨</div>
+                            <h4 class="font-bold text-gray-800 mb-2">Infographie</h4>
+                            <p class="text-gray-600 text-sm">Design graphique et visuel</p>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-6 card-hover">
+                            <div class="text-3xl mb-3">🤖</div>
+                            <h4 class="font-bold text-gray-800 mb-2">IA générative</h4>
+                            <p class="text-gray-600 text-sm">IAG et conception pédagogique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="py-16 gradient-bg text-white">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Contactez-moi</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                <span>elraphatamesse@gmail.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                                <span>+33 07 62 18 24 83</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <span>94000, Créteil</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition-colors">Portfolio en ligne</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Envoyez-moi un message</h3>
+                        <form id="contact-form" action="https://formspree.io/f/xkgpnwge" method="POST" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Nom</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                                Envoyer le message
+                            </button>
+                        </form>
+                        <div id="form-message" class="mt-4 p-4 rounded-lg hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <p>&copy; 2024 Raphaël TAMESSE. Tous droits réservés.</p>
+                <div class="flex justify-center space-x-6 mt-4">
+                    <a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">Portfolio</a>
+                    <a href="#" class="hover:text-blue-400 transition-colors">LinkedIn</a>
+                    <a href="mailto:elraphatamesse@gmail.com" class="hover:text-blue-400 transition-colors">Email</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Navigation mobile
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll fluide vers les sections
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Gestion des liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation des barres de compétences au scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.style.width;
+                    }
+                });
+            });
+
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        }
+
+        // Téléchargement du CV
+        function downloadCV() {
+            // Téléchargement direct du fichier PDF
+            const link = document.createElement('a');
+            link.href = './médias/CV_RaphaelTamesse.pdf';
+            link.download = 'CV_RaphaelTamesse.pdf';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Gestion du formulaire de contact
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const messageDiv = document.getElementById('form-message');
+            
+            // Afficher message d'envoi en cours
+            messageDiv.className = 'mt-4 p-4 rounded-lg bg-blue-100 text-blue-800';
+            messageDiv.textContent = 'Envoi en cours...';
+            messageDiv.classList.remove('hidden');
+            
+            // Envoyer via Formspree
+            fetch('https://formspree.io/f/xkgpnwge', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    messageDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 text-green-800';
+                    messageDiv.textContent = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.';
+                    this.reset();
+                } else {
+                    messageDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 text-red-800';
+                    messageDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+                }
+            }).catch(error => {
+                messageDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 text-red-800';
+                messageDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+            });
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkillBars();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99433735a11ef015',t:'MTc2MTQxMTA1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
