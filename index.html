@@ -3,670 +3,1380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Portfolio-RaphaelTAMESSE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Portfolio · Raphaël TAMESSE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #0d1f3c;
+            --navy-mid: #162d52;
+            --navy-light: #1e3f72;
+            --gold: #c9a84c;
+            --gold-light: #e2c77a;
+            --gold-pale: #f7f0dc;
+            --cream: #faf8f3;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --border: #e0d9c8;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            box-sizing: border-box;
+            font-family: var(--sans);
+            background: var(--cream);
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+
+        /* NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--navy);
+            border-bottom: 1px solid rgba(201,168,76,0.2);
         }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            color: var(--gold);
+            letter-spacing: 0.02em;
+            font-weight: 600;
         }
-        
-        .skill-bar {
-            transition: width 1s ease-in-out;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.2s;
         }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease-out;
+
+        .nav-links a:hover { color: var(--gold-light); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            padding: 4px;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--navy);
+            padding: 1rem 2rem 1.5rem;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--navy);
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            background: var(--navy-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-avatar svg {
+            width: 52px;
+            height: 52px;
+            color: rgba(255,255,255,0.4);
+            fill: currentColor;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-divider {
+            width: 48px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 2.5rem;
+            opacity: 0.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+        .btn-outline {
+            background: transparent;
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.75rem 2rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+        /* SECTIONS */
+        section { padding: 5rem 2rem; }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: 3rem;
+        }
+
+        .section-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0.75rem 0 2.5rem;
+        }
+
+        /* EXPERIENCE */
+        #experience { background: #fff; }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 180px 1px 1fr;
+            gap: 0 2rem;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-date {
+            text-align: right;
+            padding-top: 0.15rem;
+        }
+
+        .timeline-date-range {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.04em;
+        }
+
+        .timeline-date-org {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+
+        .timeline-date-type {
+            display: inline-block;
+            font-size: 0.68rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            padding: 2px 8px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-track {
+            flex: 1;
+            width: 1px;
+            background: var(--border);
+            margin-top: 6px;
+        }
+
+        .timeline-item:last-child .timeline-track { display: none; }
+
+        .timeline-content h3 {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .timeline-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .timeline-bullets li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.7rem;
+            top: 0.1rem;
+        }
+
+        /* COMPETENCES */
+        #competences { background: var(--cream); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .skills-block h3 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .skill-group-title {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            font-size: 0.82rem;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: #fff;
+            font-weight: 400;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .skill-tag:hover { border-color: var(--gold); color: var(--navy); }
+
+        .skill-tag.gold {
+            background: var(--gold-pale);
+            border-color: rgba(201,168,76,0.4);
+            color: #7a5c1a;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .tool-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 0.9rem 0.75rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .tool-card:hover { border-color: var(--gold); }
+
+        .tool-card-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-card-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .tool-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .soft-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .soft-tag {
+            font-size: 0.78rem;
+            padding: 0.3rem 0.85rem;
+            background: var(--navy);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+        }
+
+        /* FORMATION */
+        #formation { background: #fff; }
+
+        .formation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 780px;
+        }
+
+        .formation-card {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 1.5rem;
+            padding: 1.75rem;
+            border: 1px solid var(--border);
+            background: var(--cream);
+            transition: border-color 0.2s;
+        }
+
+        .formation-card:hover { border-color: var(--gold); }
+
+        .formation-year {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 400;
+            line-height: 1.2;
+            padding-top: 0.1rem;
+        }
+
+        .formation-year span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--border);
+            font-family: var(--sans);
+        }
+
+        .formation-content h3 {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--navy);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            line-height: 1.35;
+        }
+
+        .formation-school {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+
+        .formation-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* PROJETS */
+        #projets { background: var(--navy); }
+
+        #projets .section-title { color: #fff; }
+        #projets .section-label { color: var(--gold-light); }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            border: 1px solid rgba(201,168,76,0.2);
+            padding: 2rem;
+            background: rgba(255,255,255,0.03);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(201,168,76,0.5);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .project-num {
+            font-family: var(--serif);
+            font-size: 3rem;
+            color: rgba(201,168,76,0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.72rem;
+            padding: 0.25rem 0.7rem;
+            border: 1px solid rgba(201,168,76,0.25);
+            color: rgba(201,168,76,0.8);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(201,168,76,0.3);
+            padding-bottom: 1px;
+            transition: border-color 0.2s;
+        }
+
+        .project-link:hover { border-color: var(--gold); }
+        .project-link svg { width: 12px; height: 12px; }
+
+        /* LANGUES & INTÉRÊTS */
+        .extra-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .extra-block h3 {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.25rem;
+        }
+
+        .lang-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .lang-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .lang-name {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .lang-flag { font-size: 1.1rem; }
+
+        .lang-level {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.8;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .interest-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .interest-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(201,168,76,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* CONTACT */
+        #contact { background: var(--cream); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .contact-item-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gold);
+        }
+
+        .contact-item-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            padding-top: 0.5rem;
+        }
+
+        .contact-item-text a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item-text a:hover { color: var(--gold); }
+
+        .form-group { margin-bottom: 1.1rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 0.7rem 0.9rem;
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--navy); }
+
+        .form-group textarea { resize: vertical; min-height: 110px; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--navy);
+            color: var(--gold);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover { background: var(--navy-light); }
+
+        #form-message {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            padding: 0.75rem 1rem;
+            display: none;
+        }
+
+        #form-message.success { background: #eef6ee; color: #2d6a2d; }
+        #form-message.error { background: #fdf0f0; color: #8b2020; }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(201,168,76,0.15);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+
+            .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .timeline-date { text-align: left; }
+            .timeline-line { display: none; }
+
+            .skills-grid, .projects-grid, .contact-grid, .extra-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: repeat(3, 1fr); }
+            .formation-card { grid-template-columns: 1fr; gap: 0.5rem; }
         }
     </style>
 </head>
-<body class="h-full bg-gray-50 font-sans">
-    <main class="min-h-full">
-        <!-- Header avec navigation -->
-        <header class="gradient-bg text-white shadow-lg">
-            <nav class="max-w-6xl mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <h1 class="text-2xl font-bold">Mon Portfolio</h1>
-                    <div class="hidden md:flex space-x-6">
-                        <a href="#accueil" class="hover:text-blue-200 transition-colors">A propos</a>
-                        <a href="#experience" class="hover:text-blue-200 transition-colors">Expérience</a>
-                        <a href="#competences" class="hover:text-blue-200 transition-colors">Compétences</a>
-                        <a href="#formation" class="hover:text-blue-200 transition-colors">Formation</a>
-                        <a href="#projets" class="hover:text-blue-200 transition-colors">Réalisation</a>
-                        <a href="#contact" class="hover:text-blue-200 transition-colors">Contact</a>
-                    </div>
-                    <button id="menu-toggle" class="md:hidden">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
-                    <a href="#accueil" class="block hover:text-blue-200 transition-colors">A propos</a>
-                    <a href="#experience" class="block hover:text-blue-200 transition-colors">Expérience</a>
-                    <a href="#competences" class="block hover:text-blue-200 transition-colors">Compétences</a>
-                    <a href="#formation" class="block hover:text-blue-200 transition-colors">Formation</a>
-                    <a href="#projets" class="block hover:text-blue-200 transition-colors">Réalisation</a>
-                    <a href="#contact" class="block hover:text-blue-200 transition-colors">Contact</a>
-                </div>
-            </nav>
-        </header>
+<body>
 
-        <!-- Section Accueil -->
-        <section id="accueil" class="py-12 sm:py-16 lg:py-20 gradient-bg text-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center animate-fade-in">
-                <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full mx-auto mb-4 sm:mb-6 overflow-hidden border-4 border-white shadow-lg">
-                    <img src="./medias/profil.JPG" alt="Photo de profil de Raphaël TAMESSE" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                        <svg class="w-16 h-16 sm:w-20 sm:h-20 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Raphaël TAMESSE</h1>
-                <h2 class="text-lg sm:text-xl lg:text-2xl mb-4 sm:mb-6 text-blue-100">Ingénieur pédagogique numérique</h2>
-                <p class="text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-4">
-                    Ingénieur pédagogique et enseignant, je conçois des dispositifs d'apprentissage innovants et engageants centrés sur l'apprenant. Spécialisé en conception pédagogique
-					multimédia et en gestion de projets digital learning, je crée des parcours sur mesure, innovants et adaptés aux besoins des apprenants.
+<header>
+    <nav>
+        <div class="nav-logo">R. Tamesse</div>
+        <ul class="nav-links">
+            <li><a href="#accueil">À propos</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#formation">Formation</a></li>
+            <li><a href="#projets">Réalisations</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+            <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#accueil">À propos</a>
+        <a href="#experience">Expérience</a>
+        <a href="#competences">Compétences</a>
+        <a href="#formation">Formation</a>
+        <a href="#projets">Réalisations</a>
+        <a href="#contact">Contact</a>
+    </div>
+</header>
 
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
-                    <button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
-                        Me Contacter
-                    </button>
-                    <button onclick="downloadCV()" class="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                        Télécharger CV
-                    </button>
+<!-- HERO -->
+<section id="accueil" class="hero">
+    <div class="hero-inner">
+        <div class="hero-avatar">
+            <img src="data:image/jpeg;base64,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" alt="Raphaël TAMESSE">
+            <svg viewBox="0 0 24 24" style="display:none"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <p class="hero-eyebrow">Concepteur pédagogique</p>
+        <h1>Raphaël<br>TAMESSE</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-desc">Titulaire d'un master en ingénierie pédagogique numérique, je conçois des dispositifs d'apprentissage interactifs et centrés sur l'apprenant. Spécialisé en conception pédagogique multimédia et en gestion de projets pédagogiques, je crée des parcours sur mesure, innovants et adaptés aux besoins des apprenants.</p>
+        <div class="hero-ctas">
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Me contacter</button>
+            <button class="btn-outline" onclick="downloadCV()">Télécharger le CV</button>
+        </div>
+    </div>
+</section>
+
+<!-- EXPÉRIENCE -->
+<section id="experience">
+    <div class="container">
+        <p class="section-label">Parcours</p>
+        <h2 class="section-title">Expériences<br>professionnelles</h2>
+        <div class="section-divider"></div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-date-range">03/2025 — 02/2026</div>
+                    <div class="timeline-date-org">L'Eccellenza<br>Cameroun</div>
+                    <span class="timeline-date-type">CDD 12 mois</span>
+                </div>
+                <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-track"></div></div>
+                <div class="timeline-content">
+                    <h3>Ingénieur pédagogique numérique</h3>
+                    <ul class="timeline-bullets">
+                        <li>Concevoir des contenus pédagogiques multimédias</li>
+                        <li>Former des enseignants à l'utilisation des outils digitaux</li>
+                        <li>Mettre en place des dispositifs d'apprentissage en ligne</li>
+                        <li>Assurer l'assistance technique et le suivi des apprenants</li>
+                        <li>Contribuer à la digitalisation des services du centre</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Section Expérience -->
-        <section id="experience" class="py-12 sm:py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Expériences professionnelles</h2>
-                <div class="space-y-8">
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Chef de projet Digital Learning</h3>
-                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Kwark Education | Paris</p>
-                                <p class="text-gray-500 text-xs sm:text-sm italic">Contrat de professionnalisation</p>
-                            </div>
-                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">09/2024 - 09/2025</span>
-                        </div>
-                        <ul class="text-gray-600 space-y-2">
-                            <li>• Analyser les besoins clients et élaborer les cahiers des charges</li>
-                            <li>• Créer et intégrer des contenus pédagogiques sur la plateforme LMS</li>
-                            <li>• Gérer les projets et veiller au respect des délais</li>
-                            <li>• Rendre compte de l'avancement des projets aux superviseurs</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Ingénieur pédagogique numérique</h3>
-                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Centre Universitaire d'études Françaises (CUEF) | Grenoble</p>
-                                <p class="text-gray-500 text-xs sm:text-sm italic">Stage</p>
-                            </div>
-                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2024 - 08/2024</span>
-                        </div>
-                        <ul class="text-gray-600 space-y-2">
-                            <li>• Concevoir un dispositif de 4 modules d'apprentissage du français en ligne</li>
-                            <li>• Créer et intégrer des contenus pédagogiques multimédias</li>
-                            <li>• Déployer les modules interactifs sur la plateforme LMS</li>
-                            <li>• Tester et améliorer les modules en fonction des retours utilisateurs</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Ingénieur pédagogique numérique</h3>
-                                <p class="text-blue-600 font-semibold text-sm sm:text-base">École Normale Supérieure de Maroua | Cameroun</p>
-                                <p class="text-gray-500 text-xs sm:text-sm italic">Stage</p>
-                            </div>
-                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2023 - 06/2023</span>
-                        </div>
-                        <ul class="text-gray-600 space-y-2">
-                            <li>• Analyser les besoins et proposer un programme de formation technopédagogique</li>
-                            <li>• Animer des ateliers de formation à l'utilisation des outils auteurs</li>
-                            <li>• Participation à la sélection et évaluation des outils technologiques adaptés au contexte</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Responsable pédagogique</h3>
-                                <p class="text-blue-600 font-semibold text-sm sm:text-base">L'Eccellenza – Centre de langues | Yaoundé</p>
-                            </div>
-                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">01/2022 - ...</span>
-                        </div>
-                        <ul class="text-gray-600 space-y-2">
-                            <li>• Recruter et gérer du personnel enseignant</li>
-                            <li>• Analyser les besoins des apprenants et définir des objectifs pédagogiques</li>
-                            <li>• Coordonner et suivre les activités pédagogiques</li>
-                            <li>• Créer des supports pédagogiques numériques</li>
-                            <li>• Évaluer les offres de formation et proposition d'améliorations</li>
-                            <li>• Gérer des campagnes publicitaires et suivi des prospects</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div class="flex-1">
-                                <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1">Enseignant de langue étrangère</h3>
-                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Lycée classique et moderne | Ngaoundéré</p>
-                            </div>
-                            <span class="text-gray-500 font-medium text-sm mt-2 md:mt-0 md:ml-4 flex-shrink-0">03/2018 - 09/2022</span>
-                        </div>
-                        <ul class="text-gray-600 space-y-2">
-                            <li>• Préparer et dispenser des cours adaptés aux programmes en vigueur</li>
-                            <li>• Concevoir des supports pédagogiques variés et innovants</li>
-                            <li>• Suivre et évaluer le progrès des élèves</li>
-                            <li>• Coordonner les activités du département des langues étrangères</li>
-                        </ul>
-                    </div>
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-date-range">09/2024 — 11/2024</div>
+                    <div class="timeline-date-org">Kwark Education<br>Paris</div>
+                    <span class="timeline-date-type">Contrat pro</span>
+                </div>
+                <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-track"></div></div>
+                <div class="timeline-content">
+                    <h3>Assistant chef de projet e-learning</h3>
+                    <ul class="timeline-bullets">
+                        <li>Créer et intégrer des contenus pédagogiques sur la plateforme T-BOOK</li>
+                        <li>Gérer les projets et veiller au respect des délais</li>
+                        <li>Rendre compte de l'avancement des projets aux superviseurs</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Section Compétences -->
-        <section id="competences" class="py-12 sm:py-16 bg-gray-100">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Compétences</h2>
-                <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Compétences techniques</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Analyse du public et des besoins de formation</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">75%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 75%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Conception et modélisation de dispositifs pédagogiques innovants</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">70%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Production et déploiement de ressources pédagogiques multimédias</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">78%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 78%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Conception et mise en œuvre de dispositifs d'évaluation</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">68%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 68%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Gestion de projets de digital learning</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">72%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 72%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Gestion plateformes LMS</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">65%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700 text-sm sm:text-base">Connaissance du RGPD</span>
-                                    <span class="text-blue-600 font-semibold text-sm sm:text-base">70%</span>
-                                </div>
-                                <div class="bg-gray-200 rounded-full h-2 sm:h-3">
-                                    <div class="bg-blue-600 h-2 sm:h-3 rounded-full skill-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
-						<div class="border-t pt-4">
-                            <h4 class="font-bold text-gray-800 mb-3">Qualités personnelles</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Proactif</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Organisé</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Rigoureux</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Polyvalent</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Sociable</span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Dynamique</span>
-                            </div>
-                        </div>
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-date-range">03/2024 — 08/2024</div>
+                    <div class="timeline-date-org">CUEF<br>Grenoble</div>
+                    <span class="timeline-date-type">Stage</span>
+                </div>
+                <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-track"></div></div>
+                <div class="timeline-content">
+                    <h3>Ingénieur pédagogique numérique</h3>
+                    <ul class="timeline-bullets">
+                        <li>Concevoir un dispositif de 4 modules d'apprentissage du français en ligne</li>
+                        <li>Créer et intégrer des contenus pédagogiques multimédias</li>
+                        <li>Déployer les modules interactifs sur la plateforme LMS</li>
+                        <li>Tester et améliorer les modules selon les retours utilisateurs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-date-range">03/2023 — 06/2023</div>
+                    <div class="timeline-date-org">ENS Maroua<br>Cameroun</div>
+                    <span class="timeline-date-type">Stage</span>
+                </div>
+                <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-track"></div></div>
+                <div class="timeline-content">
+                    <h3>Ingénieur pédagogique numérique</h3>
+                    <ul class="timeline-bullets">
+                        <li>Analyser les besoins et proposer un programme de formation technopédagogique</li>
+                        <li>Animer des ateliers de formation aux outils auteurs</li>
+                        <li>Participer à la sélection des outils technologiques adaptés au contexte</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-date-range">03/2018 — 09/2022</div>
+                    <div class="timeline-date-org">Lycée classique<br>Ngaoundéré</div>
+                </div>
+                <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-track"></div></div>
+                <div class="timeline-content">
+                    <h3>Enseignant de langue étrangère</h3>
+                    <ul class="timeline-bullets">
+                        <li>Préparer et dispenser des cours adaptés aux programmes</li>
+                        <li>Concevoir des supports pédagogiques variés et innovants</li>
+                        <li>Suivre et évaluer le progrès des élèves</li>
+                        <li>Coordonner les activités du département des langues</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+    <div class="container">
+        <p class="section-label">Savoir-faire</p>
+        <h2 class="section-title">Compétences</h2>
+        <div class="section-divider"></div>
+
+        <div class="skills-grid">
+            <div class="skills-block">
+                <h3>Compétences métier</h3>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Conception pédagogique</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag gold">Analyse des besoins</span>
+                        <span class="skill-tag gold">Ingénierie de formation</span>
+                        <span class="skill-tag">Scénarisation pédagogique</span>
+                        <span class="skill-tag">Modélisation de dispositifs</span>
+                        <span class="skill-tag">Évaluation des apprentissages</span>
                     </div>
-                    
-                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Outils numériques</h3>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/storyline-logo.png" alt="Storyline 360" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Storyline 360 non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Storyline 360</p>
-                            </div>
-							<div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/h5p-logo.png" alt="Genially" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Genially non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">H5P</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/genially-logo.png" alt="Genially" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Genially non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Genially</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/canva-logo.png" alt="Canva" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Canva non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Canva</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/audacity-logo.png" alt="Audacity" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Audacity non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Audacity</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/adobe-logo.png" alt="Suite Adobe" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Suite Adobe non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Suite Adobe</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/google-logo.png" alt="Google Workspace" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Google Workspace non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Google Workspace</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/microsoft365-logo.png" alt="Microsoft 365" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Microsoft 365 non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Microsoft 365</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/moodle-logo.png" alt="Moodle" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Moodle non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Moodle</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/html-css-js-logo.png" alt="HTML CSS JS" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo HTML CSS JS non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">HTML/CSS/JS</p>
-                            </div>
-                            <div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/notion-logo.png" alt="Notion" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Notion non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Notion</p>
-                            </div>
-							<div class="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 flex items-center justify-center">
-                                    <img src="./medias/camtasia-logo.png" alt="Notion" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" onerror="this.src=''; this.alt='Logo Notion non trouvé'; this.style.display='none';">
-                                </div>
-                                <p class="font-medium text-gray-700 text-xs sm:text-sm">Camtasia</p>
-                            </div>
-                        </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Digital learning</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag gold">Gestion de projets e-learning</span>
+                        <span class="skill-tag">Production multimédia</span>
+                        <span class="skill-tag">Plateformes LMS</span>
+                        <span class="skill-tag">SCORM / xAPI</span>
+                        <span class="skill-tag">Connaissance RGPD</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Qualités personnelles</div>
+                    <div class="soft-skills">
+                        <span class="soft-tag">Agile &amp; proactif</span>
+                        <span class="soft-tag">Rigoureux &amp; organisé</span>
+                        <span class="soft-tag">Esprit d'équipe</span>
+                        <span class="soft-tag">Polyvalent</span>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Section Formation -->
-        <section id="formation" class="py-12 sm:py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Formation</h2>
-                <div class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Master en didactique des langues et ingénierie pédagogique numérique</h3>
-                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2022 - 2025</span>
+            <div class="skills-block">
+                <h3>Outils numériques</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/storyline-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🎓</span>'">
                         </div>
-                        <p class="text-blue-600 font-semibold mb-2">Université Grenoble-Alpes | Grenoble</p>
-                        <p class="text-gray-600">Conception et mise en place de dispositifs pédagogiques numériques, méthodologies de gestion de projets digital learning</p>
+                        <p>Storyline 360</p>
                     </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Diplôme de professeur de lycée option langues étrangères</h3>
-                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2015 - 2017</span>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/h5p-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🔵</span>'">
                         </div>
-                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">École Normale Supérieure | Maroua (Cameroun)</p>
-                        <p class="text-gray-600 text-sm sm:text-base">Conception de parcours pédagogiques centrés sur l'apprenant, maîtrise des méthodologies en didactique des langues</p>
+                        <p>H5P</p>
                     </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 sm:p-6 card-hover">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1 sm:mb-0">Licence en langues étrangères appliquées</h3>
-                            <span class="text-gray-500 font-medium text-sm sm:text-base flex-shrink-0">2011 - 2014</span>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/genially-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>✨</span>'">
                         </div>
-                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">Université de Dschang | Cameroun</p>
-                        <p class="text-gray-600 text-sm sm:text-base">Formation pluridisciplinaire en langues étrangères avec applications pratiques dans différents domaines professionnels</p>
+                        <p>Genially</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Projets -->
-        <section id="projets" class="py-12 sm:py-16 bg-gray-100">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">Projets réalisés</h2>
-                <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
-                                <span class="text-xl sm:text-2xl">🎓</span>
-                            </div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Esame Facile</h3>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/canva-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🎨</span>'">
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            Plateforme interactive dédiée à la préparation des certifications de langue italienne, 
-							conçue pour un apprentissage 100 % en autonomie. Bien qu’encore en phase de finalisation, 
-							les premiers retours des étudiants du centre L’Eccellenza sont très positifs et encourageants.
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">E-learning</span>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Autonomie</span>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Certification</span>
-                        </div>
-                        <a href="https://esamefacile.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                            Voir le projet
-                        </a>
+                        <p>Canva</p>
                     </div>
-                    
-                    <div class="bg-white rounded-lg p-4 sm:p-6 lg:p-8 card-hover">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
-                                <span class="text-xl sm:text-2xl">🇫🇷</span>
-                            </div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Start e-FLE</h3>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/camtasia-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🎬</span>'">
                         </div>
-                        <p class="text-gray-600 mb-4">
-                            Crée lors de mon stage au CUEF de Grenoble, il s'agit d'un dispositif en ligne d'apprentissage du français langue étrangère ayant obtenu un taux de satisfaction de 85% auprès du public cible.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">FLE en ligne</span>
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">85% satisfaction</span>
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Multimédia</span>
-                        </div>
-                        <a href="https://cours.univ-grenoble-alpes.fr/course/view.php?id=20663" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                            Voir le projet
-                        </a>
+                        <p>Camtasia</p>
                     </div>
-                </div>
-                
-                <!-- Section Langues -->
-                <div class="mt-12">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Langues</h3>
-                    <div class="max-w-2xl mx-auto grid md:grid-cols-3 gap-6">
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🇫🇷</div>
-                            <h4 class="font-bold text-gray-800 mb-2">Français</h4>
-                            <p class="text-gray-600">Langue maternelle</p>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/audacity-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🎙</span>'">
                         </div>
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🇮🇹</div>
-                            <h4 class="font-bold text-gray-800 mb-2">Italien</h4>
-                            <p class="text-gray-600">Avancé</p>
-                        </div>
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🇬🇧</div>
-                            <h4 class="font-bold text-gray-800 mb-2">Anglais</h4>
-                            <p class="text-gray-600">Intermédiaire</p>
-                        </div>
+                        <p>Audacity</p>
                     </div>
-                </div>
-                
-                <!-- Section Centres d'intérêt -->
-                <div class="mt-12">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Centres d'intérêt</h3>
-                    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🎬</div>
-                            <h4 class="font-bold text-gray-800 mb-2">Montage vidéo et audio</h4>
-                            <p class="text-gray-600 text-sm">Création de contenus multimédias</p>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/adobe-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🅰</span>'">
                         </div>
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🎨</div>
-                            <h4 class="font-bold text-gray-800 mb-2">Infographie</h4>
-                            <p class="text-gray-600 text-sm">Design graphique et visuel</p>
+                        <p>Suite Adobe</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/moodle-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>📚</span>'">
                         </div>
-                        <div class="text-center bg-white rounded-lg p-6 card-hover">
-                            <div class="text-3xl mb-3">🤖</div>
-                            <h4 class="font-bold text-gray-800 mb-2">IA générative</h4>
-                            <p class="text-gray-600 text-sm">IAG et conception pédagogique</p>
+                        <p>Moodle</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/notion-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>📝</span>'">
                         </div>
+                        <p>Notion</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/google-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>🔍</span>'">
+                        </div>
+                        <p>Google WS</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/microsoft365-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>💼</span>'">
+                        </div>
+                        <p>MS 365</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-card-icon">
+                            <img src="./medias/html-css-js-logo.png" alt="" onerror="this.parentNode.innerHTML='<span style=\'font-size:1.2rem\'>&lt;/&gt;</span>'">
+                        </div>
+                        <p>HTML/CSS/JS</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Section Contact -->
-        <section id="contact" class="py-16 gradient-bg text-white">
-            <div class="max-w-4xl mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12">Contactez-moi</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                                <span>elraphatamesse@gmail.com</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                                </svg>
-                                <span>+33 07 62 18 24 83</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                                <span>94000, Créteil</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                                <a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition-colors">Portfolio en ligne</a>
-                            </div>
-                        </div>
+<!-- FORMATION -->
+<section id="formation">
+    <div class="container">
+        <p class="section-label">Académique</p>
+        <h2 class="section-title">Formation</h2>
+        <div class="section-divider"></div>
+
+        <div class="formation-list">
+            <div class="formation-card">
+                <div class="formation-year">2022<span>— 2025</span></div>
+                <div class="formation-content">
+                    <h3>Master en didactique des langues et ingénierie pédagogique numérique</h3>
+                    <div class="formation-school">Université Grenoble-Alpes · Grenoble</div>
+                    <p class="formation-desc">Conception et mise en place de dispositifs pédagogiques numériques, méthodologies de gestion de projets digital learning.</p>
+                </div>
+            </div>
+            <div class="formation-card">
+                <div class="formation-year">2015<span>— 2017</span></div>
+                <div class="formation-content">
+                    <h3>Diplôme de professeur de lycée — option langues étrangères</h3>
+                    <div class="formation-school">École Normale Supérieure · Maroua, Cameroun</div>
+                    <p class="formation-desc">Conception de parcours pédagogiques centrés sur l'apprenant, maîtrise des méthodologies en didactique des langues.</p>
+                </div>
+            </div>
+            <div class="formation-card">
+                <div class="formation-year">2011<span>— 2014</span></div>
+                <div class="formation-content">
+                    <h3>Licence en langues étrangères appliquées</h3>
+                    <div class="formation-school">Université de Dschang · Cameroun</div>
+                    <p class="formation-desc">Formation pluridisciplinaire en langues étrangères avec applications pratiques dans différents domaines professionnels.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+    <div class="container">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Réalisations</h2>
+        <div class="section-divider" style="background: var(--gold);"></div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-num">01</div>
+                <h3>Esame Facile</h3>
+                <p>Plateforme interactive dédiée à la préparation des certifications de langue italienne, conçue pour un apprentissage 100 % en autonomie. Premiers retours très positifs des étudiants du centre L'Eccellenza.</p>
+                <div class="project-tags">
+                    <span class="project-tag">E-learning</span>
+                    <span class="project-tag">Autonomie</span>
+                    <span class="project-tag">Certification</span>
+                </div>
+                <a href="https://esamefacile.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                    Voir le projet
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-num">02</div>
+                <h3>Start e-FLE</h3>
+                <p>Dispositif en ligne d'apprentissage du français langue étrangère créé lors du stage au CUEF de Grenoble. Taux de satisfaction de 85 % auprès du public cible.</p>
+                <div class="project-tags">
+                    <span class="project-tag">FLE en ligne</span>
+                    <span class="project-tag">85 % satisfaction</span>
+                    <span class="project-tag">Multimédia</span>
+                </div>
+                <a href="https://cours.univ-grenoble-alpes.fr/course/view.php?id=20663" target="_blank" rel="noopener noreferrer" class="project-link">
+                    Voir le projet
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+            </div>
+        </div>
+
+            <div class="project-card" style="margin-top:1.5rem; border:1px solid rgba(201,168,76,0.2); padding:2rem; background:rgba(255,255,255,0.03);">
+                <div class="project-num">03</div>
+                <h3>Gestion-Eccellenza</h3>
+                <p>Plateforme de gestion administrative et financière du centre L'Eccellenza, conçue pour centraliser le suivi des inscriptions, des paiements et des activités.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Gestion</span>
+                    <span class="project-tag">Administration</span>
+                    <span class="project-tag">Tableau de bord</span>
+                </div>
+                <a href="https://gestion-eccellenza.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                    Voir le projet
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+            </div>
+
+        <div class="extra-grid">
+            <div class="extra-block">
+                <h3>Langues</h3>
+                <div class="lang-list">
+                    <div class="lang-item">
+                        <span class="lang-name"><span class="lang-flag">🇫🇷</span> Français</span>
+                        <span class="lang-level">Langue maternelle</span>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Envoyez-moi un message</h3>
-                        <form id="contact-form" action="https://formspree.io/f/xkgpnwge" method="POST" class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium mb-2">Nom</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-white text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-                                Envoyer le message
-                            </button>
-                        </form>
-                        <div id="form-message" class="mt-4 p-4 rounded-lg hidden"></div>
+                    <div class="lang-item">
+                        <span class="lang-name"><span class="lang-flag">🇮🇹</span> Italien</span>
+                        <span class="lang-level">Avancé</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name"><span class="lang-flag">🇬🇧</span> Anglais</span>
+                        <span class="lang-level">Intermédiaire</span>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Footer -->
-        <footer class="bg-gray-800 text-white py-8">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <p>&copy; 2025 Raphaël TAMESSE. Tous droits réservés.</p>
-                <div class="flex justify-center space-x-6 mt-4">
-                    <a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">Portfolio</a>
-                    <a href="https://www.linkedin.com/in/rapha%C3%ABl-tamesse-83a569153/" class="hover:text-blue-400 transition-colors">LinkedIn</a>
-                    <a href="mailto:elraphatamesse@gmail.com" class="hover:text-blue-400 transition-colors">Email</a>
+            <div class="extra-block">
+                <h3>Centres d'intérêt</h3>
+                <div class="interest-tags">
+                    <div class="interest-item">
+                        <div class="interest-icon">🎬</div>
+                        <span>Montage vidéo & audio — Création de contenus multimédias</span>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">🎨</div>
+                        <span>Infographie — Design graphique et visuel</span>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">🤖</div>
+                        <span>IA générative — IAG et conception pédagogique</span>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </main>
+        </div>
+    </div>
+</section>
 
-    <script>
-        // Navigation mobile
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">Échangeons</p>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-divider"></div>
 
-        // Scroll fluide vers les sections
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Informations</h3>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div class="contact-item-text"><a href="mailto:elraphatamesse@gmail.com">elraphatamesse@gmail.com</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div class="contact-item-text">+33 07 62 18 24 83</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div class="contact-item-text">94300, Pontoise</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </div>
+                    <div class="contact-item-text"><a href="https://www.linkedin.com/in/rapha%C3%ABl-tamesse-83a569153/" target="_blank" rel="noopener">LinkedIn</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <div class="contact-item-text"><a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener">Portfolio en ligne</a></div>
+                </div>
+            </div>
 
-        // Gestion des liens de navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+            <div>
+                <form id="contact-form" action="https://formspree.io/f/xkgpnwge" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+                <div id="form-message"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Animation des barres de compétences au scroll
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-bar');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.width = entry.target.style.width;
-                    }
-                });
-            });
+<!-- FOOTER -->
+<footer>
+    <div class="footer-name">Raphaël TAMESSE</div>
+    <div class="footer-links">
+        <a href="https://raphaeltamesse.vercel.app/" target="_blank" rel="noopener">Portfolio</a>
+        <a href="https://www.linkedin.com/in/rapha%C3%ABl-tamesse-83a569153/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:elraphatamesse@gmail.com">Email</a>
+    </div>
+    <p class="footer-copy">&copy; 2025 Raphaël TAMESSE — Tous droits réservés.</p>
+</footer>
 
-            skillBars.forEach(bar => {
-                observer.observe(bar);
-            });
-        }
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        const m = document.getElementById('mobile-menu');
+        m.style.display = m.style.display === 'block' ? 'none' : 'block';
+    });
 
-        // Téléchargement du CV
-        function downloadCV() {
-            // Téléchargement direct du fichier PDF
-            const link = document.createElement('a');
-            link.href = './medias/CV_RaphaelTamesse.pdf';
-            link.download = 'CV_RaphaelTamesse.pdf';
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Gestion du formulaire de contact
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
-            const messageDiv = document.getElementById('form-message');
-            
-            // Afficher message d'envoi en cours
-            messageDiv.className = 'mt-4 p-4 rounded-lg bg-blue-100 text-blue-800';
-            messageDiv.textContent = 'Envoi en cours...';
-            messageDiv.classList.remove('hidden');
-            
-            // Envoyer via Formspree
-            fetch('https://formspree.io/f/xkgpnwge', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    messageDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 text-green-800';
-                    messageDiv.textContent = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.';
-                    this.reset();
-                } else {
-                    messageDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 text-red-800';
-                    messageDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
-                }
-            }).catch(error => {
-                messageDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 text-red-800';
-                messageDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
-            });
-            
-            // Masquer le message après 5 secondes
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 5000);
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    function downloadCV() {
+        const link = document.createElement('a');
+        link.href = './medias/CV_RaphaelTamesse.pdf';
+        link.download = 'CV_RaphaelTamesse.pdf';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const msgDiv = document.getElementById('form-message');
+        msgDiv.className = '';
+        msgDiv.style.display = 'block';
+        msgDiv.textContent = 'Envoi en cours…';
+
+        fetch('https://formspree.io/f/xkgpnwge', {
+            method: 'POST',
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+        }).then(r => {
+            if (r.ok) {
+                msgDiv.className = 'success';
+                msgDiv.textContent = 'Message envoyé avec succès ! Je vous répondrai très bientôt.';
+                this.reset();
+            } else {
+                msgDiv.className = 'error';
+                msgDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+            }
+        }).catch(() => {
+            msgDiv.className = 'error';
+            msgDiv.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
         });
 
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            animateSkillBars();
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99433735a11ef015',t:'MTc2MTQxMTA1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        setTimeout(() => { msgDiv.style.display = 'none'; }, 6000);
+    });
+</script>
+
+</body>
 </html>
